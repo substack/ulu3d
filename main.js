@@ -14,6 +14,19 @@ require('./lib/state/camera.js')(app.state, app.emitter)
 require('./lib/state/meshes.js')(app.state, app.emitter)
 
 app.emitter.emit('draw-module', require('./lib/draw/solid.js'))
-app.emitter.emit('add-mesh', 'camera', require('./lib/mesh/camera.json'))
+app.emitter.emit('draw-module', require('./lib/draw/outline.js'))
+
+var mat4 = require('gl-mat4')
+app.emitter.emit('add-mesh', 'camera', Object.assign({
+  model: function (m) {
+    mat4.identity(m)
+    mat4.rotateY(m,m,performance.now()*0.001)
+    return m
+  }
+}, require('./lib/mesh/cool.json')))
 
 app.emitter.emit('regl', regl)
+
+app.emitter.on('post-frame', function () {
+  app.emitter.emit('frame')
+})

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "angle-normals": "^1.0.0",
     "gl-mat4": "^1.1.4",
     "gl-vec3": "^1.0.3",
     "glsl-hsl2rgb": "^1.1.0",
