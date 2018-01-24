@@ -14,7 +14,6 @@ require('./lib/state/camera.js')(app.state, app.emitter)
 require('./lib/state/meshes.js')(app.state, app.emitter)
 
 app.emitter.emit('draw-module', require('./lib/draw/solid.js'))
-app.emitter.emit('draw-module', require('./lib/draw/outline.js'))
 
 var mat4 = require('gl-mat4')
 app.emitter.emit('add-mesh', 'camera', Object.assign({
