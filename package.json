@@ -1,4 +1,7 @@
 {
+  "browserify": {
+    "transform": [ "glslify" ]
+  },
   "dependencies": {
     "angle-normals": "^1.0.0",
     "gl-mat4": "^1.1.4",
