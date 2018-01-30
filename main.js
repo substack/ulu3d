@@ -41,6 +41,8 @@ function onmouse (ev) {
 }
 
 var mat4 = require('gl-mat4')
-app.emitter.emit('add-mesh', 'camera', require('./lib/mesh/cool.json'))
+app.emitter.emit('add-mesh', 'camera', require('./lib/mesh/cool.json'), {
+  scale: [1,2,1], translate: [-1,0,0]
+})
 
 app.emitter.emit('regl', regl)
