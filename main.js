@@ -15,7 +15,8 @@ function onresize () {
 var regl = require('regl')({
   canvas: canvas,
   extensions: [
-    'oes_standard_derivatives', 'oes_element_index_uint',
+    'oes_standard_derivatives',
+    'oes_element_index_uint',
     'oes_texture_float'
   ]
 })
@@ -29,7 +30,7 @@ require('./lib/state/camera.js')(app.state, app.emitter)
 require('./lib/state/geometry.js')(app.state, app.emitter)
 
 app.emitter.emit('draw-module', require('./lib/draw/solid.js'))
-app.emitter.emit('draw-module', require('./lib/draw/select-box.js'))
+app.emitter.emit('draw-module', require('./lib/draw/box.js'))
 
 canvas.addEventListener('mousedown', onmouse)
 canvas.addEventListener('mouseup', onmouse)
@@ -41,8 +42,17 @@ function onmouse (ev) {
 }
 
 var mat4 = require('gl-mat4')
-app.emitter.emit('add-mesh', 'camera', require('./lib/mesh/cool.json'), {
+app.emitter.emit('add-mesh', 'camera0', require('./lib/mesh/cool.json'), {
   scale: [1,2,1], translate: [-1,0,0]
 })
+//app.emitter.emit('add-mesh', 'camera1', require('./lib/mesh/cool.json'), {
+//  scale: [1,1,1], translate: [2,0,0]
+//})
+
+setInterval(function () {
+  app.emitter.emit('set-placement', 'camera0', {
+    translate: [Math.sin(performance.now()/1000),0,0]
+  })
+}, 50)
 
 app.emitter.emit('regl', regl)
