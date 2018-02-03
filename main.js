@@ -50,9 +50,10 @@ app.emitter.emit('add-mesh', 'camera0', require('./lib/mesh/cool.json'), {
 //})
 
 setInterval(function () {
-  app.emitter.emit('set-placement', 'camera0', {
+  app.emitter.emit('set-mesh', 'camera0', {
     translate: [Math.sin(performance.now()/1000),0,0]
   })
+  app.emitter.emit('frame')
 }, 50)
 
 app.emitter.emit('regl', regl)
