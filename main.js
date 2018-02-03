@@ -1,3 +1,13 @@
+var app = {
+  state: {},
+  emitter: require('nanobus')()
+}
+require('./lib/state/frame.js')(app.state, app.emitter)
+require('./lib/state/camera.js')(app.state, app.emitter)
+require('./lib/state/geometry.js')(app.state, app.emitter)
+require('./lib/state/pick.js')(app.state, app.emitter)
+require('./lib/state/ui.js')(app.state, app.emitter)
+
 var canvas = document.createElement('canvas')
 document.body.appendChild(onresize(canvas))
 window.addEventListener('resize', onresize)
@@ -9,6 +19,9 @@ function onresize () {
   canvas.style.height = '100%'
   canvas.style.top = '0px'
   canvas.style.left = '0px'
+  app.state.width = window.innerWidth
+  app.state.height = window.innerHeight
+  app.emitter.emit('resize', app.state.width, app.state.height)
   return canvas
 }
 
@@ -21,13 +34,6 @@ var regl = require('regl')({
   ]
 })
 var camera = require('regl-camera')(regl, { distance: 150 })
-var app = {
-  state: {},
-  emitter: require('nanobus')()
-}
-require('./lib/state/frame.js')(app.state, app.emitter)
-require('./lib/state/camera.js')(app.state, app.emitter)
-require('./lib/state/geometry.js')(app.state, app.emitter)
 
 app.emitter.emit('draw-module', require('./lib/draw/solid.js'))
 app.emitter.emit('draw-module', require('./lib/draw/box.js'))
