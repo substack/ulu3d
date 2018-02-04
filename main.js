@@ -41,7 +41,7 @@ app.emitter.emit('draw-module', require('./lib/draw/handles.js'))
 
 canvas.addEventListener('mousedown', onmouse)
 canvas.addEventListener('mouseup', onmouse)
-canvas.addEventListener('mouseclick', onmouse)
+canvas.addEventListener('click', onmouse)
 canvas.addEventListener('mousemove', onmouse)
 
 function onmouse (ev) {
