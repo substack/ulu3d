@@ -36,6 +36,7 @@ var regl = require('regl')({
 var camera = require('regl-camera')(regl, { distance: 150 })
 
 app.emitter.emit('draw-module', require('./lib/draw/solid.js'))
+app.emitter.emit('draw-module', require('./lib/draw/point.js'))
 app.emitter.emit('draw-module', require('./lib/draw/box.js'))
 app.emitter.emit('draw-module', require('./lib/draw/handles.js'))
 app.emitter.emit('draw-module', require('./lib/draw/buttons.js'))
