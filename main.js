@@ -38,6 +38,7 @@ var camera = require('regl-camera')(regl, { distance: 150 })
 app.emitter.emit('draw-module', require('./lib/draw/solid.js'))
 app.emitter.emit('draw-module', require('./lib/draw/box.js'))
 app.emitter.emit('draw-module', require('./lib/draw/handles.js'))
+app.emitter.emit('draw-module', require('./lib/draw/buttons.js'))
 
 canvas.addEventListener('mousedown', onmouse)
 canvas.addEventListener('mouseup', onmouse)
@@ -49,10 +50,10 @@ function onmouse (ev) {
 }
 
 app.emitter.emit('add-mesh', 'camera0', require('./lib/mesh/camera.json'), {
-  scale: [1,2,1], translate: [-1,0,0]
+  scale: [0.5,1,1], translate: [-2,0,0], rotate: [0.1,0.3,0.05]
 })
 app.emitter.emit('add-mesh', 'camera1', require('./lib/mesh/camera.json'), {
-  scale: [0.5,0.5,0.5], translate: [0,3,0]
+  scale: [0.5,0.3,0.3], translate: [0,3,0]
 })
 app.emitter.emit('add-mesh', 'camera2', require('./lib/mesh/camera.json'), {
   scale: [1,1,1], translate: [2,-1,0]
